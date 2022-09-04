@@ -7,7 +7,7 @@ Being the name of a sub-city in Hong Kong, it always
 shows up in my mind whenever I think of
 Commando.
 
-*By the way, the Commando in repository name is for publicity. [This](#junk-bay-將軍澳) is the project's official name.*
+*By the way, the Commando in repository name is for publicity.*
 
 This repository contains a basic example of a modern PocketMine-MP plugin, and a handful of the API features.
 
