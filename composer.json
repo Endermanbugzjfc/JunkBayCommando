@@ -1,19 +1,32 @@
 {
    "name": "endermanbugzjfc/junkbaycommando",
    "type": "library",
-   "require": {
+   "require-dev": {
       "pocketmine/pocketmine-mp": "4.0.0",
-      "cortexpe/commando": "dev-master",
+      "paroxity/commando": "dev-master",
       "sylvrs/libmarshal": "^1.4",
       "sof3/await-generator": "^3.4",
-      "sof3/await-std": "dev-master"
-   },
-   "require-dev": {
+      "sof3/await-std": "dev-master",
       "phpunit/phpunit": "^9.5",
       "phpstan/phpstan": "1.4.6",
       "phpstan/phpstan-strict-rules": "^1.0",
       "phpstan/extension-installer": "^1.0"
    },
+   "repositories": [{
+      "type": "package",
+      "package": {
+         "name": "paroxity/commando",
+         "version": "master",
+         "autoload": {
+            "classmap": ["src/"]
+         },
+         "source": {
+            "url": "https://github.com/Paroxity/Commando",
+            "type": "git",
+            "reference": "master"
+         }
+      }
+   }],
    "autoload": {
       "psr-4": {
          "Endermanbugzjfc\\JunkBayCommando\\": "src"
