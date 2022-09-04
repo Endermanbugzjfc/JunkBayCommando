@@ -7,7 +7,7 @@ Being the name of a sub-city in Hong Kong, it always
 shows up in my mind whenever I think of
 Commando.
 
-Otherwise, another war among Lazuli Commando and [Hyundai Commando](https://github.com/keopiwauyu/HyundaiCommando) would begin...
+Otherwise, another war among [Lazuli Commando](https://youtu.be/cDdRFj3MBIs) and [Hyundai Commando](https://github.com/keopiwauyu/HyundaiCommando) would begin...
 
 *By the way, the Commando in repository name is for publicity.*
 
