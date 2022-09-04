@@ -1,20 +1,20 @@
 #name, main, version and api are required
-name: ExamplePlugin
-main: keopiwauyu\ExamplePlugin\MainClass
-src-namespace-prefix: keopiwauyu\ExamplePlugin
+name: JunkBayCommando
+main: Endermanbugzjfc\JunkBayCommando\MainClass
+src-namespace-prefix: Endermanbugzjfc\JunkBayCommando
 version: 0.0.1
 api: 4.0.0
 
 load: POSTWORLD
-author: 커피와 우유
+author: Endermanbugzjfc
 description: Example plugin showing the new API
-website: https://github.com/keopiwauyu/ExamplePlugin
+website: https://github.com/Endermanbugzjfc/JunkBayCommando
 commands:
   example:
     description: Example command
     usage: "/example"
-    permission: exampleplugin.command.example
+    permission: junkbaycommando.command.example
 permissions:
-  exampleplugin.command.example:
+  junkbaycommando.command.example:
     description: "Allows the user to run the example command"
     default: true
