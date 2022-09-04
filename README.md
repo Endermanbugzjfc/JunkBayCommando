@@ -2,10 +2,12 @@
 
 ## Naming
 將軍澳 (Junk Bay), pronounced as Tseung Kwan O, which that the first two syllables refer to the word General in Cantonese.
-sub-city in Hong Kong. 將軍 meaning
-"general", and this name always
+
+Being the name of a sub-city in Hong Kong, it always
 shows up in my mind whenever I think of
 Commando.
+
+*By the way, the Commando in repository name is for publicity. [This]() is the library's official name.*
 
 This repository contains a basic example of a modern PocketMine-MP plugin, and a handful of the API features.
 
