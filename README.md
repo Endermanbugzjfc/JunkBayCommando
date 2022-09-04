@@ -1,7 +1,7 @@
 # Junk Bay 將軍澳
 
 ## Naming
-將軍澳 (Junk Bay), pronounced as Tseung Kwan O, which that the first two syllables refers to the word General.
+將軍澳 (Junk Bay), pronounced as Tseung Kwan O, which that the first two syllables refer to the word General.
 sub-city in Hong Kong. 將軍 meaning
 "general", and this name always
 shows up in my mind whenever I think of
