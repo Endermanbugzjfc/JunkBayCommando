@@ -1,11 +1,13 @@
 # Junk Bay 將軍澳
-
-## Naming
+Command argument-by-type library for PocketMine-MP.
+## What to do with junk!??
 將軍澳 (Junk Bay), pronounced as Tseung Kwan O, which that the first two syllables refer to the word General in Cantonese.
 
 Being the name of a sub-city in Hong Kong, it always
 shows up in my mind whenever I think of
 Commando.
+
+Otherwise, another war among Lazuli Commando and [Hyundai Commando](https://github.com/keopiwauyu/HyundaiCommando) would begin...
 
 *By the way, the Commando in repository name is for publicity.*
 
