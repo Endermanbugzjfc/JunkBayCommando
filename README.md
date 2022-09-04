@@ -1,5 +1,11 @@
 # JunkBayCommando
 
+## Naming
+將軍澳 （ Tseung Kwan O / Junk Bay ）, a sub-city in Hong Kong. 將軍 meaning
+"general", and this name always
+shows up in my mind whenever I think of
+Commando.
+
 This repository contains a basic example of a modern PocketMine-MP plugin, and a handful of the API features.
 
 ## PHPStan analysis
