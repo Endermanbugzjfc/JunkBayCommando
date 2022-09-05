@@ -1,13 +1,13 @@
-# JUNK_BAY_COMMANDO
-# JunkBayCommando
-# junk bay commando
-# junk-bay-commando
-# junkbaycommando
+# JUNK_BAY
+# JunkBay
+# junk bay
+# junk-bay
+# junkbay
 
 PHP = $(shell which php) -dphar.readonly=0
 COMPOSER = dev/composer.phar
 
-SRC_NAMESPACE_PREFIX = Endermanbugzjfc/JunkBayCommando
+SRC_NAMESPACE_PREFIX = Endermanbugzjfc/JunkBay
 
 REUSE_MYSQL = false
 
@@ -19,15 +19,15 @@ DIFF = diff -y --suppress-common-lines --width=$(shell tput cols)
 
 SUITE_TESTS_CONFIG_REGEN = false
 
-# JUNK_BAY_COMMANDO_SOURCE_FILES = plugin.yml $(shell find src resources -type f)
-JUNK_BAY_COMMANDO_SOURCE_FILES = plugin.yml $(shell find src -type f)
-# JUNK_BAY_COMMANDO_VIRIONS = dev/await-generator.phar dev/await-std.phar dev/libasynql.phar dev/rwlock.phar
-JUNK_BAY_COMMANDO_VIRIONS = dev/await-generator.phar dev/await-std.phar dev/libMarshal.phar dev/Commando.phar
+# JUNK_BAY_SOURCE_FILES = plugin.yml $(shell find src resources -type f)
+JUNK_BAY_SOURCE_FILES = plugin.yml $(shell find src -type f)
+# JUNK_BAY_VIRIONS = dev/await-generator.phar dev/await-std.phar dev/libasynql.phar dev/rwlock.phar
+JUNK_BAY_VIRIONS = dev/await-generator.phar dev/await-std.phar dev/libMarshal.phar dev/Commando.phar
 
 # .PHONY: all phpstan fmt debug/suite-mysql suitetest $(SUITE_TESTS)
 .PHONY: all phpstan fmt suitetest $(SUITE_TESTS)
 
-default: phpstan dev/JunkBayCommando.phar
+default: phpstan dev/JunkBay.phar
 
 # phpstan: src/SOFe/Capital/Database/RawQueries.php vendor
 phpstan: vendor
@@ -54,15 +54,15 @@ dev/src: src Makefile
 dev/resources: resources
 	cp -rf resources dev/resources
 
-# dev/JunkBayCommando.phar: $(JUNK_BAY_COMMANDO_SOURCE_FILES) dev/ConsoleScript.php $(JUNK_BAY_COMMANDO_VIRIONS) dev/plugin.yml dev/src dev/resources
-dev/JunkBayCommando.phar: $(JUNK_BAY_COMMANDO_SOURCE_FILES) dev/ConsoleScript.php $(JUNK_BAY_COMMANDO_VIRIONS) dev/plugin.yml dev/src
+# dev/JunkBay.phar: $(JUNK_BAY_SOURCE_FILES) dev/ConsoleScript.php $(JUNK_BAY_VIRIONS) dev/plugin.yml dev/src dev/resources
+dev/JunkBay.phar: $(JUNK_BAY_SOURCE_FILES) dev/ConsoleScript.php $(JUNK_BAY_VIRIONS) dev/plugin.yml dev/src
 # 	$(PHP) dev/ConsoleScript.php --make plugin.yml,src,resources --relative "dev" --out $@
 	$(PHP) dev/ConsoleScript.php --make plugin.yml,src --relative "dev" --out $@
 
-	for file in $(JUNK_BAY_COMMANDO_VIRIONS); do $(PHP) $$file $@ Endermanbugzjfc\\JunkBayCommando\\Virions\\$$(tr -dc A-Za-z </dev/urandom | head -c 8)\\ ; done
+	for file in $(JUNK_BAY_VIRIONS); do $(PHP) $$file $@ Endermanbugzjfc\\JunkBay\\Virions\\$$(tr -dc A-Za-z </dev/urandom | head -c 8)\\ ; done
 
 # src/SOFe/Capital/Database/RawQueries.php: dev/libasynql.phar resources/mysql/* resources/sqlite/*
-# 	$(PHP) dev/libasynql.phar fx src/ Endermanbugzjfc\\JunkBayCommando\\Database\\RawQueries --struct 'final class' --spaces 4 --sql resources --prefix capital
+# 	$(PHP) dev/libasynql.phar fx src/ Endermanbugzjfc\\JunkBay\\Database\\RawQueries --struct 'final class' --spaces 4 --sql resources --prefix capital
 
 dev/composer.phar: Makefile
 	cd dev && wget -O - https://getcomposer.org/installer | $(PHP)
@@ -117,11 +117,11 @@ dev/FakePlayer.phar: Makefile
 
 suitetest: $(SUITE_TESTS)
 
-# SKIP_MYSQL = true # no mysql in junk bay commando
+# SKIP_MYSQL = true # no mysql in junk bay
 
-# $(SUITE_TESTS): dev/JunkBayCommando.phar dev/FakePlayer.phar dev/InfoAPI.phar dev/SuiteTester.phar
-$(SUITE_TESTS): dev/JunkBayCommando.phar dev/FakePlayer.phar dev/SuiteTester.phar
-	$(eval CONTAINER_PREFIX := junk-bay-commando-suite-$(shell basename $@))
+# $(SUITE_TESTS): dev/JunkBay.phar dev/FakePlayer.phar dev/InfoAPI.phar dev/SuiteTester.phar
+$(SUITE_TESTS): dev/JunkBay.phar dev/FakePlayer.phar dev/SuiteTester.phar
+	$(eval CONTAINER_PREFIX := junk-bay-suite-$(shell basename $@))
 	docker network create $(CONTAINER_PREFIX)-network || true
 # 	$(eval SKIP_MYSQL := $(REUSE_MYSQL) || test -f $@/options/skip-mysql)
 
@@ -139,7 +139,7 @@ $(SUITE_TESTS): dev/JunkBayCommando.phar dev/FakePlayer.phar dev/SuiteTester.pha
 	docker create --name $(CONTAINER_PREFIX)-pocketmine \
 		--network $(CONTAINER_PREFIX)-network \
 		-e SUITE_TESTER_OUTPUT=/data/output.json \
-		-e JUNK_BAY_COMMANDO_DEBUG=1 \
+		-e JUNK_BAY_DEBUG=1 \
 		-u root \
 		pmmp/pocketmine-mp:$(POCKETMINE_VERSION) \
 		start-pocketmine --debug.level=2
@@ -148,7 +148,7 @@ $(SUITE_TESTS): dev/JunkBayCommando.phar dev/FakePlayer.phar dev/SuiteTester.pha
 	docker cp dev/FakePlayer.phar $(CONTAINER_PREFIX)-pocketmine:/plugins/FakePlayer.phar
 # 	docker cp dev/InfoAPI.phar $(CONTAINER_PREFIX)-pocketmine:/plugins/InfoAPI.phar
 	docker cp dev/SuiteTester.phar $(CONTAINER_PREFIX)-pocketmine:/plugins/SuiteTester.phar
-	docker cp dev/JunkBayCommando.phar $(CONTAINER_PREFIX)-pocketmine:/plugins/JunkBayCommando.phar
+	docker cp dev/JunkBay.phar $(CONTAINER_PREFIX)-pocketmine:/plugins/JunkBay.phar
 	docker cp $@/data $(CONTAINER_PREFIX)-pocketmine:/
 	docker cp suitetest/shared/data $(CONTAINER_PREFIX)-pocketmine:/
 
@@ -173,4 +173,4 @@ $(SUITE_TESTS): dev/JunkBayCommando.phar dev/FakePlayer.phar dev/SuiteTester.pha
 # 	command -v dot && dot -T svg -o $@/output/depgraph.svg $@/output/depgraph.dot || true
 
 # debug/suite-mysql:
-# 	docker exec -it junk-bay-commando-suite-mysql-mysql bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+# 	docker exec -it junk-bay-suite-mysql-mysql bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'

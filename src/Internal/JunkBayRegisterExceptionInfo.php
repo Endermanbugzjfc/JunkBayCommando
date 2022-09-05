@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Endermanbugzjfc\JunkBayCommando\Internal;
+namespace Endermanbugzjfc\JunkBay\Internal;
 
 /**
  * Similar to compiler errors. 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Endermanbugzjfc\JunkBayCommando\Internal;
+namespace Endermanbugzjfc\JunkBay\Internal;
 
 /**
  * Inspired by but NOT 1:1-copy of the Rust compile-time error helps.

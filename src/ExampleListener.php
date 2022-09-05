@@ -21,7 +21,7 @@
 
 declare(strict_types=1);
 
-namespace Endermanbugzjfc\JunkBayCommando;
+namespace Endermanbugzjfc\JunkBay;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;

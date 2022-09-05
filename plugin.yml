@@ -1,20 +1,20 @@
 #name, main, version and api are required
-name: JunkBayCommando
-main: Endermanbugzjfc\JunkBayCommando\MainClass
-src-namespace-prefix: Endermanbugzjfc\JunkBayCommando
+name: JunkBay
+main: Endermanbugzjfc\JunkBay\MainClass
+src-namespace-prefix: Endermanbugzjfc\JunkBay
 version: 0.0.1
 api: 4.0.0
 
 load: POSTWORLD
 author: Endermanbugzjfc
 description: Example plugin showing the new API
-website: https://github.com/Endermanbugzjfc/JunkBayCommando
+website: https://github.com/Endermanbugzjfc/JunkBay
 commands:
   example:
     description: Example command
     usage: "/example"
-    permission: junkbaycommando.command.example
+    permission: junkbay.command.example
 permissions:
-  junkbaycommando.command.example:
+  junkbay.command.example:
     description: "Allows the user to run the example command"
     default: true
