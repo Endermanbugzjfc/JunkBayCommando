@@ -12,6 +12,8 @@ namespace Endermanbugzjfc\JunkBay\Internal;
  */
 final class JunkBayRegisterExceptionInfo {
 
+    private string $message;
+
     public function __construct(private \ReflectionFunctionAbstract $f) {
     }
 
@@ -36,14 +38,21 @@ final class JunkBayRegisterExceptionInfo {
         );
     }
 
-    public function wrongContextParam(\ReflectionParameter $param, bool $missingContextParam, string ...$redundants) : self {
+    public function wrongContextParam(\ReflectionParameter $param string ...$redundants) : self {
+        $missing = true;
+        foreach ($redundants as $redundant) {
+            if (is_subclass_of($redundant, CommandContext::class)) {
+                $missing = false;
+                break;
+            }
+        }
         $redundantsClone = $redundants; // Because array_shift() is going to mutate the variable.
         $this->badContextParam("redundantly " . array_shift($redundants) . self::implodeTypes(...$redundants))->help = new Help(
-            !$missingContextParam
+            !$missing
                 ? "Extract the types to another param if you meant to have them as a command argument"
                 : "Prepend a context param",
             self::implodeTypes(
-                !$missingContextParam
+                !$missing
                     ? [CommandContext::class, ...$redundantsClone]
                     : $redundantsClone
             ) . ' $' . $param->getName(),
@@ -64,9 +73,15 @@ final class JunkBayRegisterExceptionInfo {
         return $this;
     }
 
+    public function unsupportedTypesFormat(\ReflectionParameter $param, \ReflectionType $_) : self {
+        $this->message = 'Param $' . $param->getName() . " is neither using normal-types nor union-types";
+
+        return $this;
+    }
+
     public ?string $help = null;
 
-    public function getHelp() : string {
-        return $this->help;
+    public function getThrowable() : \Throwable {
+        return new \RuntimeException($this->message . isset($this->help) ? "\n\n" . $this->help->__toString() : "");
     }
 }
