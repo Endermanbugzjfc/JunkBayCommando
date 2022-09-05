@@ -1,6 +1,21 @@
-# JunkBay
+# Junk Bay 將軍澳
+Command argument-by-type library for PocketMine-MP.
+## What to do with junk!??
+將軍澳 (Junk Bay), pronounced as Tseung Kwan O,
+which that the first two syllables refer to the word General in Cantonese.
 
-This repository contains a basic example of a modern PocketMine-MP plugin, and a handful of the API features.
+Being the name of a sub-city in Hong Kong,
+it always shows up in my mind whenever I think of Commando.
+
+Otherwise, another war among [Lazuli Commando](https://youtu.be/cDdRFj3MBIs) and [Hyundai Commando](https://github.com/keopiwauyu/HyundaiCommando) would begin... 
+*By the way, the Commando in current repository name is just for publicity.*
+
+I picked the name TseungKwano at the outset,
+then my anxious told me to avoid the same ending as Hyun...
+something something by going with a more recallable name.
+Although the current one is yet crappy, not gonna lie.
+
+命名是個技術活！
 
 ## PHPStan analysis
 This repository shows an example setup for standalone local analysis of a plugin using [PHPStan](https://phpstan.org).
