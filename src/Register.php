@@ -24,19 +24,26 @@ final class Register {
 		$paramsK = $method->getParameters();
 		$params = array_values($paramsK);
 		$paramFirst = $params[0] ?? throw $errInfo->noContextParam()->getThrowable();
-		$paramContext = $paramFirst->getType() ?? throw $errInfo->wrongContextParam($paramFirst "mixed")->getThrowable();
+		$paramContext = $paramFirst->getType() ?? throw $errInfo->untypedContextParam($paramFirst)->getThrowable();
 		$typeFirst = $paramsFirst->getType();
+		$returnType = $method->getReturnType() ?? throw $errInfo->untypedReturn($paramFirst);
 
-		if ($typeFirst instanceof \ReflectionUnionType) {
-			$typesListFirst = array_map(
-				static fn(\ReflectionNamedType $type) : string => $type->getName(),
-				$typeFirst->getTypes()
-			);
-			throw $errInfo->wrongContextParam($paramFirst, $typesListFirst)->getThrowable();
-		} elseif (!$typeFirst instanceof ReflectionNamedType) {
-			throw $errInfo->unsupportedTypesFormat($paramFirst, $typeFirst)->getThrowable();
-		} elseif (!is_subclass_of($typeFirst->getName(), CommandContext::class)) {
-			throw $errInfo->wrongContextParam($paramFirst, [$typeFirst->getName()])->getThrowable();
+		foreach ([
+			match (true) { // Verfy context param.
+				$typeFirst instanceof \ReflectionUnionType => $errInfo->wrongContextParam($paramFirst, ...Utils::getTypeNames(...$typeFirst)),
+				!$typeFirst instanceof ReflectionNamedType => $errInfo->unsupportedParamTypesFormat($paramFirst, $typeFirst),
+				!is_subclass_of($typeFirst->getName(), CommandContext::class) => $errInfo->wrongContextParam($paramFirst, $typeFirst->getName())
+			},
+
+			match (true) { // Verify return type.
+				$returnType instanceof \ReflectionUnionType => $errInfo->wrongReturnType(...Utils::getTypeNames(...$returnType)),
+				!$returnType instanceof ReflectionNamedType => $errInfo->unsupportedReturnTypesFormat($returnType),
+				$returnType->getName() !== "Generator" && $returnType->getName() !== "void" => $errInfo->wrongReturnType($paramFirst, $returnType->getName())
+			},
+		] as $throwable) {
+			if ($throwable !== null) {
+				throw $throwable;
+			}
 		}
 	}
 }
